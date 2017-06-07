@@ -48,9 +48,9 @@ notify_error() {
 }
 
 error() { 
-    printf "==> ERROR: %s\n" "$@"
-    notify_error 'Error' 'Check journal for more information.'
-} >&2
+    echo -e "==> ERROR: $@" >&2
+    notify_error 'Error' 'Check journal for more information.' 2>&1 > /dev/null
+}
 
 die() { 
     error "$@"
